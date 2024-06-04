@@ -6,15 +6,16 @@ module.exports = (client) => {
 
   for (const eventFolder of eventFolders) {
     const eventFiles = getAllFiles(eventFolder);
-    eventFiles.sort((a, b) => a > b);
+    let eventName;
+    eventName = eventFolder.replace(/\\/g, "/").split("/").pop();
 
-    const eventName = eventFolder.replace(/\\/g, "/").split("/").pop();
+    eventName === "validations" ? eventName = "interactionCreate" : eventName;
 
-    client.on(eventName, async (arg) => {
+    client.on(eventName, async (...args) => {
       for (const eventFile of eventFiles) {
         const eventFunction = require(eventFile);
-        await eventFunction(client, arg);
-      }
+        await eventFunction(client, ...args);
+      };
     });
-  }
+  };
 };
