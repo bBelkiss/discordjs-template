@@ -6,9 +6,7 @@
 
 2. Create a new file called `.env` and open it to see what you need to paste in where.
 ```env
-TOKEN=
-GUILD_ID=
-CLIENT_ID=
+DISCORD_TOKEN=
 MONGODB_URI=
 ```
 
