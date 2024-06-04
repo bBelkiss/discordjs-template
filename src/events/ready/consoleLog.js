@@ -1,3 +1,5 @@
-module.exports = (client) => {
-  console.log(`${client.user.tag} is online.`);
+require("colors");
+
+module.exports = async (client) => {
+  console.log("[INFO] ".green + `${client.user.username} is online!`);
 };
