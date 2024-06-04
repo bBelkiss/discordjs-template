@@ -1,16 +1,24 @@
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+require("colors");
+
 module.exports = {
-  name: "ping",
-  description: "Replies with the bot ping.",
+  data: new SlashCommandBuilder()
+    .setName("test")
+    .setDescription("Test if everything works.")
+    .toJSON()
+  ,
+  testMode: false,
+  devOnly: false,
+  deleted: false,
+  userPermissions: [],
+  botPermissions: [],
 
-  callback: async (client, interaction) => {
-    await interaction.deferReply();
-
-    const reply = await interaction.fetchReply();
-
-    const ping = reply.createdTimestamp - interaction.createdTimestamp;
-
-    interaction.editReply(
-      `Pong! Client ${ping}ms | Websocket: ${client.ws.ping}ms.`
-    );
+  run: (client, interaction) => {
+    try {
+      //...
+    } catch (err) {
+      console.log("[ERROR] ".red + "Error in your ping.js run function:");
+      console.log(err);
+    };
   },
 };
